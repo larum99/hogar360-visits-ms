@@ -184,7 +184,7 @@ Los reportes de cobertura se generan en:
 
 Una vez ejecutada la aplicacion, la documentacion interactiva esta disponible en:
 
-- **Swagger UI:** `http://localhost:8092/swagger-ui`
+- **Swagger UI:** `http://localhost:8092/swagger-ui/index.html`
 - **OpenAPI Docs:** `http://localhost:8092/api-docs`
 
 ## Reglas de Negocio
