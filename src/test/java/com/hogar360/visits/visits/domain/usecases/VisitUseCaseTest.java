@@ -232,7 +232,6 @@ class VisitUseCaseTest {
                 null,
                 null,
                 null,
-                null,
                 1,
                 10,
                 null,
@@ -265,7 +264,6 @@ class VisitUseCaseTest {
                 null,
                 null,
                 null,
-                null,
                 -1,
                 10,
                 null,
@@ -282,7 +280,6 @@ class VisitUseCaseTest {
     @Test
     void listVisits_InvalidPageSize_ShouldThrowPageSizeInvalidException() {
         VisitCriteria criteria = new VisitCriteria(
-                null,
                 null,
                 null,
                 null,
@@ -307,7 +304,6 @@ class VisitUseCaseTest {
                 LocalDateTime.now().plusDays(1),
                 null,
                 null,
-                null,
                 0,
                 10,
                 null,
@@ -324,7 +320,6 @@ class VisitUseCaseTest {
     @Test
     void listVisits_InvalidSortDirection_ShouldThrowInvalidSortDirectionException() {
         VisitCriteria criteria = new VisitCriteria(
-                null,
                 null,
                 null,
                 null,
@@ -349,7 +344,6 @@ class VisitUseCaseTest {
                 null,
                 null,
                 null,
-                null,
                 0,
                 10,
                 "invalidField",
@@ -366,7 +360,6 @@ class VisitUseCaseTest {
     @Test
     void listVisits_ValidSortFieldAndDirection_ShouldCallPersistence() {
         VisitCriteria criteria = new VisitCriteria(
-                null,
                 null,
                 null,
                 null,
