@@ -58,4 +58,59 @@ public class ControllerAdvisor {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ExceptionResponse(
                 ExceptionConstants.FORBIDDEN_EXCEPTION_MESSAGE, LocalDateTime.now()));
     }
+
+    @ExceptionHandler(BuyerAlreadyBookedVisitException.class)
+    public ResponseEntity<ExceptionResponse> handleBuyerAlreadyBookedVisitException(BuyerAlreadyBookedVisitException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.BUYER_ALREADY_BOOKED_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(VisitAlreadyStartedException.class)
+    public ResponseEntity<ExceptionResponse> handleVisitAlreadyStartedException(VisitAlreadyStartedException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ExceptionResponse(
+                ExceptionConstants.VISIT_ALREADY_STARTED_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(VisitFullyBookedException.class)
+    public ResponseEntity<ExceptionResponse> handleVisitFullyBookedException(VisitFullyBookedException exception) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(new ExceptionResponse(
+                ExceptionConstants.VISIT_FULLY_BOOKED_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(VisitNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleVisitNotFoundException(VisitNotFoundException exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ExceptionResponse(
+                ExceptionConstants.VISIT_NOT_FOUND_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(PageSizeInvalidException.class)
+    public ResponseEntity<ExceptionResponse> handlePageSizeInvalidException(PageSizeInvalidException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.PAGE_SIZE_INVALID_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(PageNumberNegativeException.class)
+    public ResponseEntity<ExceptionResponse> handlePageNumberNegativeException(PageNumberNegativeException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.PAGE_NUMBER_NEGATIVE_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(InvalidSortDirectionException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidSortDirectionException(InvalidSortDirectionException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.INVALID_SORT_DIRECTION_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(InvalidSortFieldException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidSortFieldException(InvalidSortFieldException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.INVALID_SORT_FIELD_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(InvalidDateRangeException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidDateRangeException(InvalidDateRangeException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.INVALID_DATE_RANGE_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
 }

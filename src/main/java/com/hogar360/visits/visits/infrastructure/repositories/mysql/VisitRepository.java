@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface VisitRepository extends JpaRepository<VisitEntity, Long>, JpaSpecificationExecutor<VisitEntity> {
@@ -17,4 +18,15 @@ public interface VisitRepository extends JpaRepository<VisitEntity, Long>, JpaSp
                                  @Param("startDateTime") LocalDateTime startDateTime,
                                  @Param("endDateTime") LocalDateTime endDateTime);
 
+
+    List<VisitEntity> findByHouseIdIn(List<Long> houseIds);
+
+    @Query("""
+        SELECT v FROM VisitEntity v
+        WHERE v.houseId = :houseId
+        AND (
+          SELECT COUNT(r) FROM VisitReservationEntity r WHERE r.visit.id = v.id
+        ) < 2
+    """)
+    List<VisitEntity> findAvailableVisitsByHouseId(@Param("houseId") Long houseId);
 }

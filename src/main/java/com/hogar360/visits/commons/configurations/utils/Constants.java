@@ -6,5 +6,5 @@ public class Constants {
     }
 
     public static final String SAVE_VISIT_RESPONSE_MESSAGE = "Visit created successfully.";
-
+    public static final String SAVE_VISIT_RESERVATION_RESPONSE_MESSAGE = "Visit reservation created successfully.";
 }

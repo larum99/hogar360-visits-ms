@@ -29,12 +29,14 @@ public class SecurityConstants {
             "/swagger-ui.html",
             "/api-docs/**",
             "/api-docs",
-            "/api/v1/visit/**",
-            "/api/v1/visit/search",
+            "/api/v1/visits/search",
             "/api/v1/role/validate",
-            "/api/v1/user/login"
+            "/api/v1/user/login",
+            "/api/v1/visits/reservations/",
+            "/api/v1/house/search-ids-by-location",
+            "/api/v1/visits/available/**"
     );
 
-    public static final String VISIT_PROTECTED_PATH = "/api/v1/visit/";
+    public static final String VISIT_PROTECTED_PATH = "/api/v1/visits/";
 
 }

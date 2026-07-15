@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(SecurityConstants.PUBLIC_PATHS.toArray(new String[0])).permitAll()
 
-                        .requestMatchers("/api/v1/visits/**").hasRole("VENDEDOR")
+                        .requestMatchers(SecurityConstants.VISIT_PROTECTED_PATH).authenticated()
 
                         .anyRequest().authenticated()
                 )

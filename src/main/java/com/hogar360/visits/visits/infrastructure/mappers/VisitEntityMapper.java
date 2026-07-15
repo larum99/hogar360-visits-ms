@@ -10,4 +10,5 @@ import java.util.List;
 public interface VisitEntityMapper {
     VisitModel entityToModel(VisitEntity visitEntity);
     VisitEntity modelToEntity(VisitModel visitModel);
+    List<VisitModel> entityListToModelList(List<VisitEntity> visitEntities);
 }
