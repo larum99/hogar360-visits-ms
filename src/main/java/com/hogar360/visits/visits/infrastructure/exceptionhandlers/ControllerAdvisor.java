@@ -23,6 +23,12 @@ public class ControllerAdvisor {
                 ExceptionConstants.HOUSE_NOT_FOUND_EXCEPTION_MESSAGE, LocalDateTime.now()));
     }
 
+    @ExceptionHandler(HouseNotPublishedException.class)
+    public ResponseEntity<ExceptionResponse> handleHouseNotPublishedException(HouseNotPublishedException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                ExceptionConstants.HOUSE_NOT_PUBLISHED_EXCEPTION_MESSAGE, LocalDateTime.now()));
+    }
+
     @ExceptionHandler(UserIsNotHouseOwnerException.class)
     public ResponseEntity<ExceptionResponse> handleUserIsNotHouseOwnerException(UserIsNotHouseOwnerException exception) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ExceptionResponse(

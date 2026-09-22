@@ -77,6 +77,7 @@ class VisitUseCaseTest {
         when(visitPersistencePort.hasOverlappingVisits(sellerId, validVisitModel.getStartDateTime(), validVisitModel.getEndDateTime()))
                 .thenReturn(false);
         when(houseServicePort.getOwnerId(validVisitModel.getHouseId())).thenReturn(Optional.of(sellerId));
+        when(houseServicePort.getHouseStatus(validVisitModel.getHouseId())).thenReturn(Optional.of(DomainConstants.HOUSE_STATUS_PUBLISHED));
 
         visitUseCase.saveVisit(validVisitModel, sellerId, roleSeller);
 
@@ -88,6 +89,7 @@ class VisitUseCaseTest {
         assertEquals(sellerId, savedVisit.getUserId());
         verify(visitPersistencePort).hasOverlappingVisits(sellerId, validVisitModel.getStartDateTime(), validVisitModel.getEndDateTime());
         verify(houseServicePort).getOwnerId(validVisitModel.getHouseId());
+        verify(houseServicePort).getHouseStatus(validVisitModel.getHouseId());
     }
 
     @Test
@@ -222,6 +224,34 @@ class VisitUseCaseTest {
 
         verify(visitPersistencePort).hasOverlappingVisits(sellerId, validVisitModel.getStartDateTime(), validVisitModel.getEndDateTime());
         verify(houseServicePort).getOwnerId(validVisitModel.getHouseId());
+        verify(visitPersistencePort, never()).save(any(VisitModel.class));
+    }
+
+    @Test
+    void saveVisit_PausedHouse_ShouldThrowHouseNotPublishedException() {
+        when(visitPersistencePort.hasOverlappingVisits(sellerId, validVisitModel.getStartDateTime(), validVisitModel.getEndDateTime()))
+                .thenReturn(false);
+        when(houseServicePort.getOwnerId(validVisitModel.getHouseId())).thenReturn(Optional.of(sellerId));
+        when(houseServicePort.getHouseStatus(validVisitModel.getHouseId())).thenReturn(Optional.of("PAUSED"));
+
+        assertThrows(HouseNotPublishedException.class,
+                () -> visitUseCase.saveVisit(validVisitModel, sellerId, roleSeller));
+
+        verify(houseServicePort).getHouseStatus(validVisitModel.getHouseId());
+        verify(visitPersistencePort, never()).save(any(VisitModel.class));
+    }
+
+    @Test
+    void saveVisit_HouseStatusEmpty_ShouldThrowHouseNotFoundException() {
+        when(visitPersistencePort.hasOverlappingVisits(sellerId, validVisitModel.getStartDateTime(), validVisitModel.getEndDateTime()))
+                .thenReturn(false);
+        when(houseServicePort.getOwnerId(validVisitModel.getHouseId())).thenReturn(Optional.of(sellerId));
+        when(houseServicePort.getHouseStatus(validVisitModel.getHouseId())).thenReturn(Optional.empty());
+
+        assertThrows(HouseNotFoundException.class,
+                () -> visitUseCase.saveVisit(validVisitModel, sellerId, roleSeller));
+
+        verify(houseServicePort).getHouseStatus(validVisitModel.getHouseId());
         verify(visitPersistencePort, never()).save(any(VisitModel.class));
     }
 

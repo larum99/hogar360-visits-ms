@@ -5,5 +5,6 @@ import java.util.Optional;
 
 public interface HouseServicePort {
     Optional<Long> getOwnerId(Long houseId);
+    Optional<String> getHouseStatus(Long houseId);
     List<Long> getHouseIdsByLocation(Long cityId, String sector);
 }

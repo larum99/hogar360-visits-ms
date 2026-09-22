@@ -17,6 +17,8 @@ public class DomainConstants {
 
     public static final String ROLE_SELLER = "VENDEDOR";
 
+    public static final String HOUSE_STATUS_PUBLISHED = "PUBLISHED";
+
     public static final int DEFAULT_PAGE_NUMBER = 0;
     public static final int DEFAULT_SIZE_NUMBER = 1;
 

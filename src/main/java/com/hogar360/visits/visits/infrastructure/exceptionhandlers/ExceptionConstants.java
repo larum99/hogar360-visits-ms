@@ -5,6 +5,7 @@ public class ExceptionConstants {
 
     public static final String VISIT_OVERLAP_EXCEPTION_MESSAGE = "There is already a scheduled visit that overlaps with the requested time.";
     public static final String HOUSE_NOT_FOUND_EXCEPTION_MESSAGE = "The house was not found.";
+    public static final String HOUSE_NOT_PUBLISHED_EXCEPTION_MESSAGE = "Visits can only be scheduled for published houses.";
     public static final String USER_NOT_HOUSE_OWNER_EXCEPTION_MESSAGE = "You are not the owner of the house.";
     public static final String START_DATE_BEFORE_NOW_EXCEPTION_MESSAGE = "The start date must be in the future.";
     public static final String END_DATE_BEFORE_START_EXCEPTION_MESSAGE = "The end date must be after the start date.";

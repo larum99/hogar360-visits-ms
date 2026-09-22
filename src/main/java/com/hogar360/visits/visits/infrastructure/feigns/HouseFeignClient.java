@@ -1,5 +1,6 @@
 package com.hogar360.visits.visits.infrastructure.feigns;
 
+import com.hogar360.visits.visits.infrastructure.feigns.dto.HouseResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,9 @@ public interface HouseFeignClient {
 
     @GetMapping("/api/v1/house/{houseId}/owner")
     Long getOwnerId(@PathVariable("houseId") Long houseId);
+
+    @GetMapping("/api/v1/house/{houseId}")
+    HouseResponse getHouseById(@PathVariable("houseId") Long houseId);
 
     @GetMapping("/api/v1/house/search-ids-by-location")
     List<Long> getHouseIdsByLocation(

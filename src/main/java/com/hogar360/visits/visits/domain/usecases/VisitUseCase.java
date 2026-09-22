@@ -39,7 +39,7 @@ public class VisitUseCase implements VisitServicePort {
 
         Optional<Long> ownerIdOptional = houseServicePort.getOwnerId(visitModel.getHouseId());
 
-        if (ownerIdOptional.isEmpty()) {
+        if (ownerIdOptional == null || ownerIdOptional.isEmpty()) {
             throw new HouseNotFoundException();
         }
 
@@ -47,6 +47,16 @@ public class VisitUseCase implements VisitServicePort {
 
         if (!ownerId.equals(sellerId)) {
             throw new UserIsNotHouseOwnerException();
+        }
+
+        Optional<String> statusOptional = houseServicePort.getHouseStatus(visitModel.getHouseId());
+
+        if (statusOptional == null || statusOptional.isEmpty()) {
+            throw new HouseNotFoundException();
+        }
+
+        if (!DomainConstants.HOUSE_STATUS_PUBLISHED.equals(statusOptional.get())) {
+            throw new HouseNotPublishedException();
         }
 
         visitModel.setUserId(sellerId);
