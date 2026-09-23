@@ -15,7 +15,10 @@ public class SecurityConstants {
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String BEARER_PREFIX = "Bearer ";
 
-    public static final String ALLOWED_ORIGIN = "http://localhost:4200";
+    public static final List<String> ALLOWED_ORIGIN = List.of(
+            "http://localhost:4200",
+            "https://hogar360-frontend-k60f.onrender.com",
+            "https://hogar360-frontend.vercel.app/");
     public static final List<String> ALLOWED_METHODS = List.of(
             HttpMethod.GET.name(),
             HttpMethod.POST.name(),
