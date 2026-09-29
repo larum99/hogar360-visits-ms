@@ -8,6 +8,10 @@ spring:
     url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}
     username: ${DB_USER}
     password: ${DB_PASSWORD}
+    hikari:
+      maximum-pool-size: 1
+      minimum-idle: 0
+      connection-timeout: 30000
   jpa:
     database: MYSQL
     database-platform: org.hibernate.dialect.MySQL8Dialect
