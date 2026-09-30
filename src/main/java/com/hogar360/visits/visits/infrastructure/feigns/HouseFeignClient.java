@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "house-service", url = "https://hogar360-houses-ms.onrender.com")
+@FeignClient(name = "house-service", url = "${houses.service.url:http://localhost:8090}")
 public interface HouseFeignClient {
 
     @GetMapping("/api/v1/house/{houseId}/owner")
